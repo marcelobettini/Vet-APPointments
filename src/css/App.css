@@ -1,7 +1,14 @@
 .App {
   text-align: center;
+  
 }
-
+.card-header {
+  background-color: rgb(174, 255, 192);
+}
 .App-link {
   color: #61dafb;
+}
+
+ul {
+  list-style-type: none;
 }

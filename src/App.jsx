@@ -6,25 +6,57 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
-  // let apts = []
-  const [appointments, setAppointments] = useState([]);
-  useEffect( () => {    
-    fetch("./data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const apts = Array.from(data.map((el) => {          
-          return el;          
-        }));       
-        setAppointments(JSON.stringify(apts))        
-      }, []);
-    });
-      
+  const [appointments, setAppointments] = useState(null);
+  // const [deletingRecord, setDeletingRecord] = useState(false);
+  const [progressWidth, setProgressWidth] = useState(0);
+
+  function getData(
+    url = "https://5fc82e232af77700165ad172.mockapi.io/appointments"
+  ) {
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result.map((item) => {
+          return item;
+        });
+        setAppointments(data);
+      })
+      .catch((err) => console.log(err));
+  }
+  const deleteAppointment = (id) => {
+    for (let i = 0; i < 100; i++) {
+      setProgressWidth(i);
+      console.log(`progressWidth: ${progressWidth}`);
+      console.log(`iterator: ${i}`);
+    }
+
+    fetch(`https://5fc82e232af77700165ad172.mockapi.io/appointments/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.JSON)
+      .then((result) => {
+        getData();
+        return result;
+      })
+      .catch((er) => console.log(er));
+    setProgressWidth(0);
+    console.log(progressWidth);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="App">
-      <div>{appointments}</div>
       <AddAppointments />
       <SearchAppointments />
-      <ListAppointments />
+      <ListAppointments
+        appointments={appointments}
+        deleteAppointment={deleteAppointment}
+        // deletingRecord={deletingRecord}
+        progressWidth={progressWidth}
+      />
     </div>
   );
 }
