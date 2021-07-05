@@ -23,6 +23,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
   const deleteAppointment = (id) => {
     for (let i = 0; i < 100; i++) {
       setProgressWidth(i);
@@ -43,13 +44,30 @@ function App() {
     console.log(progressWidth);
   };
 
+  const addAppointment = (aptObject) => {
+    console.log(aptObject);
+    fetch("https://5fc82e232af77700165ad172.mockapi.io/appointments/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(aptObject),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        getData();
+        return result;
+      })
+
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <div className="App">
-      <AddAppointments />
+      <AddAppointments addAppointment={addAppointment} />
       <SearchAppointments />
       <ListAppointments
         appointments={appointments}

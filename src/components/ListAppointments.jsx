@@ -1,11 +1,7 @@
 import React from "react";
 import { MdClear } from "react-icons/md";
 import Moment from "react-moment";
-const ListAppointments = ({
-  appointments,
-  deleteAppointment,
-  progressWidth,
-}) => {
+const ListAppointments = ({ appointments, deleteAppointment }) => {
   return (
     <div className="container bg-dark py-3">
       <div className="row justify-content-center">
@@ -29,16 +25,7 @@ const ListAppointments = ({
                       <MdClear />
                     </button>
                   </div>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: `${progressWidth}%` }}
-                      aria-valuenow="25"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
+
                   <div className="card-body">
                     <p className="card-text" style={{ fontSize: "1.3rem" }}>
                       {item.aptNotes}
