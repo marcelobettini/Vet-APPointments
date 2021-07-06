@@ -1,4 +1,3 @@
-import { unique } from "jquery";
 import React from "react";
 
 const AddAppointments = ({ addAppointment }) => {

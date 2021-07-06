@@ -11,39 +11,37 @@ const ListAppointments = ({ appointments, deleteAppointment }) => {
           que una ternaria con div vacío si false... sweet */}
 
           {appointments &&
-            appointments
-              .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
-              .map((item) => (
-                <div className="card m-4 bg-ligtht" key={item.id}>
-                  <div className="card-header d-flex justify-content-between">
-                    <p className="card-title p-2 display-6">{item.petName}</p>
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger btn-sm align-self-center"
-                      onClick={(ev) => deleteAppointment(item.id)}
-                    >
-                      <MdClear />
-                    </button>
-                  </div>
-
-                  <div className="card-body">
-                    <p className="card-text" style={{ fontSize: "1.3rem" }}>
-                      {item.aptNotes}
-                    </p>
-
-                    <div className="card-footer"></div>
-                    <p>
-                      Appointed at:{" "}
-                      <Moment
-                        date={item.aptDate}
-                        parse="YYY-MM-DD hh:mm"
-                        format="D-MMM H:mm"
-                      />
-                    </p>
-                    <p>Owned by: {item.ownerName}</p>
-                  </div>
+            appointments.map((item) => (
+              <div className="card m-4 bg-ligtht" key={item.id}>
+                <div className="card-header d-flex justify-content-between">
+                  <p className="card-title p-2 display-6">{item.petName}</p>
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger btn-sm align-self-center"
+                    onClick={(ev) => deleteAppointment(item.id)}
+                  >
+                    <MdClear />
+                  </button>
                 </div>
-              ))}
+
+                <div className="card-body">
+                  <p className="card-text" style={{ fontSize: "1.3rem" }}>
+                    {item.aptNotes}
+                  </p>
+
+                  <div className="card-footer"></div>
+                  <p>
+                    Appointed at:{" "}
+                    <Moment
+                      date={item.aptDate}
+                      parse="YYY-MM-DD hh:mm"
+                      format="D-MMM H:mm"
+                    />
+                  </p>
+                  <p>Owned by: {item.ownerName}</p>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

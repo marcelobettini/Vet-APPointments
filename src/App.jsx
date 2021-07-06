@@ -16,9 +16,11 @@ function App() {
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
-        const data = result.map((item) => {
-          return item;
-        });
+        const data = result
+          .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
+          .map((item) => {
+            return item;
+          });
         setAppointments(data);
       })
       .catch((err) => console.log(err));
