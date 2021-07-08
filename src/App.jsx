@@ -65,37 +65,13 @@ function App() {
   };
 
   function sortAptsBy(field) {
-    console.log(field);
     let sortedArr = [];
-    switch (field) {
-      case "petName":
-        sortedArr = appointments
-          .sort((a, b) => a.petName.localeCompare(b.petName))
-          .map((item) => {
-            return item;
-          });
-        break;
-      case "ownerName":
-        sortedArr = appointments
-          .sort((a, b) => a.ownerName.localeCompare(b.ownerName))
-          .map((item) => {
-            return item;
-          });
-          break;
-      case "aptDate":
-        sortedArr = appointments
-          .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
-          .map((item) => {
-            return item;
-          });
-          break;
-      default:
-        return appointments;
-        
-    }
-
+    sortedArr = appointments
+      .sort((a, b) => a[field].localeCompare(b[field]))
+      .map((item) => {
+        return item;
+      });
     setAppointments(sortedArr);
-    
   }
 
   useEffect(() => {
