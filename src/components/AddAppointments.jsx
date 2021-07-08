@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 const AddAppointments = ({ addAppointment }) => {
-  let pet_Name, owner_Name, apt_Notes, apt_Date;
+  let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;
+
   const [toggleModal, setToggleModal] = useState(false);
 
   // function uniqueId() {
@@ -16,7 +17,7 @@ const AddAppointments = ({ addAppointment }) => {
       petName: pet_Name,
       ownerName: owner_Name,
       aptNotes: apt_Notes,
-      aptDate: apt_Date,
+      aptDate: `${apt_Date} ${apt_Time}`,
     };
     console.log(aptObject);
     addAppointment(aptObject);
@@ -41,7 +42,8 @@ const AddAppointments = ({ addAppointment }) => {
                   pet_Name,
                   owner_Name,
                   apt_Notes,
-                  apt_Date
+                  apt_Date,
+                  apt_Time
                 )
               }
             >
@@ -66,13 +68,26 @@ const AddAppointments = ({ addAppointment }) => {
                 value={apt_Notes}
                 onChange={(e) => (apt_Notes = e.target.value)}
               />
-              <input
-                className="form-control mb-4"
-                type="text"
-                placeholder="Date and Hour"
-                value={apt_Date}
-                onChange={(e) => (apt_Date = e.target.value)}
-              />
+              <div className="row">
+                <div className="col-6">
+                  <input
+                    className="form-control mb-4"
+                    type="date"
+                    placeholder="Date"
+                    value={apt_Date}
+                    onChange={(e) => (apt_Date = e.target.value)}
+                  />
+                </div>
+                <div className="col-6">
+                  <input
+                    className="form-control mb-4"
+                    type="time"
+                    placeholder="Hour"
+                    value={apt_Date}
+                    onChange={(e) => (apt_Time = e.target.value)}
+                  />
+                </div>
+              </div>
               <button type="submit" className="btn btn-light mb-2 text-danger">
                 Confirm
               </button>

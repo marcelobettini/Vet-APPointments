@@ -34,8 +34,8 @@ const ListAppointments = ({ appointments, deleteAppointment }) => {
                     Appointed at:{" "}
                     <Moment
                       date={item.aptDate}
-                      parse="YYY-MM-DD hh:mm"
-                      format="D-MMM H:mm"
+                      parse="YYYY-MM-DD hh:mm"
+                      format="D-MMM-YYYY H:mm"
                     />
                   </p>
                   <p>Owned by: {item.ownerName}</p>
