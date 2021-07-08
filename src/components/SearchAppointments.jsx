@@ -30,7 +30,7 @@ function SearchAppointments({sortAptsBy}) {
                   <button
                     className="dropdown-item"
                     value="petName"
-                    onClick={(e) => sortAptsBy(e)}
+                    onClick={(e) => sortAptsBy(e.target.value)}
                   >
                     Pet Name
                   </button>
@@ -39,7 +39,7 @@ function SearchAppointments({sortAptsBy}) {
                   <button
                     className="dropdown-item"
                     value="ownerName"
-                    onClick={(e) => sortAptsBy(e)}
+                    onClick={(e) => sortAptsBy(e.target.value)}
                   >
                     Owner Name
                   </button>
@@ -48,7 +48,7 @@ function SearchAppointments({sortAptsBy}) {
                   <button
                     className="dropdown-item"
                     value="aptDate"
-                    onClick={(e) => sortAptsBy(e)}
+                    onClick={(e) => sortAptsBy(e.target.value)}
                   >
                     Appointment Date
                   </button>

@@ -64,9 +64,38 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  function sortAptsBy(e) {
-    console.log(e.target.value);
-    const sortedArr = appointments.sort((a,b) => a.)
+  function sortAptsBy(field) {
+    console.log(field);
+    let sortedArr = [];
+    switch (field) {
+      case "petName":
+        sortedArr = appointments
+          .sort((a, b) => a.petName.localeCompare(b.petName))
+          .map((item) => {
+            return item;
+          });
+        break;
+      case "ownerName":
+        sortedArr = appointments
+          .sort((a, b) => a.ownerName.localeCompare(b.ownerName))
+          .map((item) => {
+            return item;
+          });
+          break;
+      case "aptDate":
+        sortedArr = appointments
+          .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
+          .map((item) => {
+            return item;
+          });
+          break;
+      default:
+        return appointments;
+        
+    }
+
+    setAppointments(sortedArr);
+    
   }
 
   useEffect(() => {
@@ -76,11 +105,10 @@ function App() {
   return (
     <div className="App">
       <AddAppointments addAppointment={addAppointment} />
-      <SearchAppointments sortAptsBy={sortAptsBy}/>
+      <SearchAppointments sortAptsBy={sortAptsBy} />
       <ListAppointments
         appointments={appointments}
         deleteAppointment={deleteAppointment}
-        
         // deletingRecord={deletingRecord}
         progressWidth={progressWidth}
       />
