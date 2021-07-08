@@ -63,6 +63,12 @@ function App() {
 
       .catch((err) => console.log(err));
   };
+
+  function sortAptsBy(e) {
+    console.log(e.target.value);
+    const sortedArr = appointments.sort((a,b) => a.)
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -70,10 +76,11 @@ function App() {
   return (
     <div className="App">
       <AddAppointments addAppointment={addAppointment} />
-      <SearchAppointments />
+      <SearchAppointments sortAptsBy={sortAptsBy}/>
       <ListAppointments
         appointments={appointments}
         deleteAppointment={deleteAppointment}
+        
         // deletingRecord={deletingRecord}
         progressWidth={progressWidth}
       />

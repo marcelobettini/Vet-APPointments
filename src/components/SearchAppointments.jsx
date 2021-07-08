@@ -1,7 +1,5 @@
-function SearchAppointments() {
-  function handleClick(e) {
-    console.log(e.target.value);
-  }
+function SearchAppointments({sortAptsBy}) {
+  
   return (
     <div className="container">
       <div className="row justify-content-center mb-4">
@@ -32,7 +30,7 @@ function SearchAppointments() {
                   <button
                     className="dropdown-item"
                     value="petName"
-                    onClick={handleClick}
+                    onClick={(e) => sortAptsBy(e)}
                   >
                     Pet Name
                   </button>
@@ -41,7 +39,7 @@ function SearchAppointments() {
                   <button
                     className="dropdown-item"
                     value="ownerName"
-                    onClick={handleClick}
+                    onClick={(e) => sortAptsBy(e)}
                   >
                     Owner Name
                   </button>
@@ -50,7 +48,7 @@ function SearchAppointments() {
                   <button
                     className="dropdown-item"
                     value="aptDate"
-                    onClick={handleClick}
+                    onClick={(e) => sortAptsBy(e)}
                   >
                     Appointment Date
                   </button>
