@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../css/AddAppointments.css";
 
 const AddAppointments = ({ addAppointment, isLoading }) => {
   let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;

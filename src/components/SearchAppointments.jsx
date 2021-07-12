@@ -1,5 +1,5 @@
-function SearchAppointments({sortAptsBy, setSearchText}) {
-  
+import "../css/SearchAppointments.css";
+function SearchAppointments({ sortAptsBy, setSearchText, reverseOrder }) {
   return (
     <div className="container">
       <div className="row justify-content-center mb-4">
@@ -10,7 +10,7 @@ function SearchAppointments({sortAptsBy, setSearchText}) {
               className="form-control me-2"
               aria-label="Search Appointments"
               placeholder="Enter pet name (full or partial)"
-              onChange={(ev)=> setSearchText(ev.target.value.toLowerCase())}
+              onChange={(ev) => setSearchText(ev.target.value.toLowerCase())}
             />
 
             <div className="dropdown">
@@ -56,10 +56,12 @@ function SearchAppointments({sortAptsBy, setSearchText}) {
                 </li>
                 <div role="separator" className="dropdown-divider" />
                 <li>
-                  <button className="dropdown-item">Ascending</button>
-                </li>
-                <li>
-                  <button className="dropdown-item">Descending</button>
+                  <button
+                    className="dropdown-item"
+                    onClick={(ev) => reverseOrder()}
+                  >
+                    Reverse Order
+                  </button>
                 </li>
               </ul>
             </div>

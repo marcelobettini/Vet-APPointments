@@ -6,7 +6,7 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
-  const [appointments, setAppointments] = useState(null);  
+  const [appointments, setAppointments] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,9 +17,14 @@ function App() {
     }, time);
   }
 
-  function getData(    
+  function reverseOrder() {
+    const cloneApt = [...appointments].reverse();
+    setAppointments(cloneApt);
+  }
+
+  function getData(
     url = "https://5fc82e232af77700165ad172.mockapi.io/appointments"
-  ) {    
+  ) {
     fetch(url)
       .then((response) => response.json())
       .then((result) => {
@@ -48,7 +53,7 @@ function App() {
         return result;
       })
       .catch((er) => console.log(er));
-      spin(2000)
+    spin(2000);
   };
 
   const addAppointment = (aptObject) => {
@@ -65,7 +70,7 @@ function App() {
         return result;
       })
       .catch((err) => console.log(err));
-      spin()
+    spin();
   };
 
   function sortAptsBy(field) {
@@ -77,9 +82,9 @@ function App() {
       });
     setAppointments(sortedArr);
   }
-useEffect(() =>{
-spin(2000)
-},[]);
+  useEffect(() => {
+    spin(2000);
+  }, []);
   useEffect(() => {
     getData();
   }, [searchText]);
@@ -103,12 +108,11 @@ spin(2000)
           <SearchAppointments
             sortAptsBy={sortAptsBy}
             setSearchText={setSearchText}
+            reverseOrder={reverseOrder}
           />
           <ListAppointments
             appointments={appointments}
             deleteAppointment={deleteAppointment}
-            
-            
           />
         </div>
       )}
