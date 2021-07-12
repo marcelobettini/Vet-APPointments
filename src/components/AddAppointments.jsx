@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddAppointments = ({ addAppointment }) => {
+const AddAppointments = ({ addAppointment, isLoading }) => {
   let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;
 
   const [toggleModal, setToggleModal] = useState(false);
