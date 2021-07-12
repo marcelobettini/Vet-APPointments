@@ -6,9 +6,9 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
-  const [appointments, setAppointments] = useState(null);
-  // const [deletingRecord, setDeletingRecord] = useState(false);
+  const [appointments, setAppointments] = useState(null);  
   const [progressWidth, setProgressWidth] = useState(0);
+  const [searchText, setSearchText] = useState("")
 
   function getData(
     url = "https://5fc82e232af77700165ad172.mockapi.io/appointments"
@@ -17,6 +17,13 @@ function App() {
       .then((response) => response.json())
       .then((result) => {
         const data = result
+        .filter((item) => {
+          if(searchText === ""){
+            return item
+          }else  
+            return item.petName.toLowerCase().includes(searchText) 
+      
+        })
           .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
           .map((item) => {
             return item;
@@ -76,12 +83,12 @@ function App() {
 
   useEffect(() => {
     getData();
-  }, []);
+  },[searchText]);
 
   return (
     <div className="App">
       <AddAppointments addAppointment={addAppointment} />
-      <SearchAppointments sortAptsBy={sortAptsBy} />
+      <SearchAppointments sortAptsBy={sortAptsBy} setSearchText={setSearchText} />
       <ListAppointments
         appointments={appointments}
         deleteAppointment={deleteAppointment}

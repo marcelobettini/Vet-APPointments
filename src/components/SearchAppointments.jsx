@@ -1,4 +1,4 @@
-function SearchAppointments({sortAptsBy}) {
+function SearchAppointments({sortAptsBy, setSearchText}) {
   
   return (
     <div className="container">
@@ -9,7 +9,8 @@ function SearchAppointments({sortAptsBy}) {
               type="text"
               className="form-control me-2"
               aria-label="Search Appointments"
-              placeholder="Enter text you want to find"
+              placeholder="Enter pet name (full or partial)"
+              onChange={(ev)=> setSearchText(ev.target.value.toLowerCase())}
             />
 
             <div className="dropdown">
