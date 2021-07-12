@@ -1,6 +1,7 @@
 import React from "react";
 import { MdClear } from "react-icons/md";
 import Moment from "react-moment";
+import "../css/ListAppointments.css";
 const ListAppointments = ({ appointments, deleteAppointment }) => {
   return (
     <div className="container bg-dark py-3">
