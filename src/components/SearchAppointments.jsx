@@ -1,7 +1,12 @@
-function SearchAppointments({ sortAptsBy, setSearchText, reverseOrder, searchText }) {
+function SearchAppointments({
+  sortAptsBy,
+  setSearchText,
+  reverseOrder,
+  searchText,
+}) {
   return (
     <div className="container">
-      <div className="row justify-content-center mb-4">
+      <div className="row justify-content-center my-4">
         <div className="col-sm-6 ">
           <div className="input-group">
             <input
@@ -10,9 +15,8 @@ function SearchAppointments({ sortAptsBy, setSearchText, reverseOrder, searchTex
               aria-label="Search Appointments"
               value={searchText}
               placeholder="Enter pet name (full or partial)"
-              onChange={(ev) => setSearchText(ev.target.value.toLowerCase())}            
-              />
-              
+              onChange={(ev) => setSearchText(ev.target.value.toLowerCase())}
+            />
 
             <div className="dropdown">
               <button

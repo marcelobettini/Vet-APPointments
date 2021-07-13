@@ -20,6 +20,15 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  function cleanFields() {
+    setId("");
+    setPetName("");
+    setOwnerName("");
+    setAptNotes("");
+    setAptDate("");
+    setAptTime("");
+  }
+
   function spin(time = 1000) {
     setIsLoading(true);
     setTimeout(() => {
@@ -80,11 +89,11 @@ function App() {
         return result;
       })
       .catch((err) => console.log(err));
+    cleanFields();
     spin();
   };
 
   const updateAppointment = (aptObject, id) => {
-    console.log(id);
     fetch(`https://5fc82e232af77700165ad172.mockapi.io/appointments/${id}`, {
       method: "PUT",
       headers: {
@@ -98,6 +107,7 @@ function App() {
         return result;
       })
       .catch((err) => console.log(err));
+    cleanFields();
     spin();
   };
 
@@ -167,6 +177,7 @@ function App() {
             setAptTime={setAptTime}
             isNew={isNew}
             setIsNew={setIsNew}
+            cleanFields={cleanFields}
           />
           <SearchAppointments
             sortAptsBy={sortAptsBy}

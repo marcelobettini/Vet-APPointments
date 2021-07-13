@@ -20,17 +20,23 @@ const AddAppointments = ({
   setAptNotes,
   setAptDate,
   setAptTime,
+  cleanFields,
 }) => {
   const handleAddAppointment = (event, a, b, c, d, e) => {
     event.preventDefault();
     if (
       typeof a === "undefined" ||
+      !a.trim() ||
       typeof b === "undefined" ||
+      !b.trim() ||
       typeof c === "undefined" ||
+      !c.trim() ||
       typeof d === "undefined" ||
-      typeof e === "undefined"
+      !d.trim() ||
+      typeof e === "undefined" ||
+      !e.trim()
     ) {
-      setError("Complete todos los campos");
+      setError("Must complete all fields");
     } else {
       const aptObject = {
         petName: a,
@@ -50,21 +56,22 @@ const AddAppointments = ({
   };
 
   return (
-    <div className="container">
+    <div className="container bg-dark">
       <button
-        className="btn btn-primary my-4"
+        className="btn btn-primary my-2"
         onClick={() => {
           setToggleModal(!toggleModal);
           setError("");
+          cleanFields();
         }}
       >
         {!toggleModal ? "Add New Appointment" : "Close New Appointment"}
       </button>
       {toggleModal && (
-        <div className="row justify-content-center my-4 ">
-          <div className="col-sm-6">
+        <div className="row justify-content-center my-2 ">
+          <div className="col-8">
             <form
-              className="form-group form-row bg-dark p-3"
+              className="form-group form-row align-self-center card-header p-3 my-4"
               onSubmit={(e) =>
                 handleAddAppointment(
                   e,
@@ -78,6 +85,7 @@ const AddAppointments = ({
             >
               <input
                 className="form-control my-2"
+                id="first-input"
                 type="text"
                 placeholder="Pet Name"
                 value={pet_Name}
@@ -137,7 +145,7 @@ const AddAppointments = ({
                   </div>
                 )}
               </div>
-              <button type="submit" className="btn btn-light mb-2 text-danger">
+              <button type="submit" className="btn btn-success mb-2">
                 Confirm
               </button>
             </form>

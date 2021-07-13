@@ -11,3 +11,6 @@
         opacity: 1;
     }
 }
+.card-header {
+  background-color: rgb(174, 255, 192);
+}

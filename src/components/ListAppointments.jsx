@@ -15,7 +15,6 @@ const ListAppointments = ({
   setId,
 }) => {
   function editAppointment(id) {
-    console.log(id);
     setIsNew(false);
     const item = appointments.filter((el) => el.id === id);
     setId(id);
@@ -25,6 +24,7 @@ const ListAppointments = ({
     const date_time = item[0].aptDate.split(" ");
     setAptDate(date_time[0]);
     setAptTime(date_time[1]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
   return (
     <div className="container bg-dark py-3">
@@ -41,8 +41,8 @@ const ListAppointments = ({
                         type="button"
                         className="btn btn-outline-primary btn-sm align-self-center me-2"
                         onClick={(ev) => {
-                          editAppointment(item.id);
                           setToggleModal(true);
+                          editAppointment(item.id);
                         }}
                       >
                         <BsPencilSquare fontSize="1.2rem" />
