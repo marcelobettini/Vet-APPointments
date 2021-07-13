@@ -6,6 +6,7 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
+  const [error, setError] = useState("");
   const [appointments, setAppointments] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -86,7 +87,22 @@ function App() {
     spin(2000);
   }, []);
   useEffect(() => {
-    getData();
+    fetch("https://5fc82e232af77700165ad172.mockapi.io/appointments/")
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result
+          .filter((item) => {
+            if (searchText === "") {
+              return item;
+            } else return item.petName.toLowerCase().includes(searchText);
+          })
+          .sort((a, b) => a.aptDate.localeCompare(b.aptDate))
+          .map((item) => {
+            return item;
+          });
+        setAppointments(data);
+      })
+      .catch((err) => console.log(err));
   }, [searchText]);
 
   return (
@@ -104,6 +120,10 @@ function App() {
           <AddAppointments
             addAppointment={addAppointment}
             isLoading={isLoading}
+            error={error}
+            setError={setError}
+            setSearchText={setSearchText}
+            searchText={searchText}
           />
           <SearchAppointments
             sortAptsBy={sortAptsBy}
