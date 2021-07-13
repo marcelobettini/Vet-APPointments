@@ -5,11 +5,10 @@ const AddAppointments = ({
   addAppointment,
   error,
   setError,
+  toggleModal,
+  setToggleModal,
 }) => {
   let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;
-
-  const [toggleModal, setToggleModal] = useState(false);
-
   const handleAddAppointment = (event, a, b, c, d, e) => {
     event.preventDefault();
     if (
@@ -36,7 +35,10 @@ const AddAppointments = ({
     <div className="container">
       <button
         className="btn btn-primary my-4"
-        onClick={() => { setToggleModal(!toggleModal); setError("")}}
+        onClick={() => {
+          setToggleModal(!toggleModal);
+          setError("");
+        }}
       >
         {!toggleModal ? "Add New Appointment" : "Close New Appointment"}
       </button>

@@ -6,6 +6,7 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
+  const [toggleModal, setToggleModal] = useState(false);
   const [error, setError] = useState("");
   const [appointments, setAppointments] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -124,6 +125,8 @@ function App() {
             setError={setError}
             setSearchText={setSearchText}
             searchText={searchText}
+            toggleModal={toggleModal}
+            setToggleModal={setToggleModal}
           />
           <SearchAppointments
             sortAptsBy={sortAptsBy}
@@ -134,6 +137,8 @@ function App() {
           <ListAppointments
             appointments={appointments}
             deleteAppointment={deleteAppointment}
+            toggleModal={toggleModal}
+            setToggleModal={setToggleModal}
           />
         </div>
       )}
