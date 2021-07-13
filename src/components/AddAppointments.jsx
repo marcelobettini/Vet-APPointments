@@ -3,19 +3,12 @@ import "../css/AddAppointments.css";
 
 const AddAppointments = ({
   addAppointment,
-  isLoading,
   error,
   setError,
-  setSearchText,
-  searchText,
 }) => {
   let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;
 
   const [toggleModal, setToggleModal] = useState(false);
-
-  // function uniqueId() {
-  //   return Math.round(Math.random() * Date.now());
-  // MockAPI gestiona su ID, queda de muestra este código, muy útil}
 
   const handleAddAppointment = (event, a, b, c, d, e) => {
     event.preventDefault();
@@ -43,7 +36,7 @@ const AddAppointments = ({
     <div className="container">
       <button
         className="btn btn-primary my-4"
-        onClick={() => setToggleModal(!toggleModal)}
+        onClick={() => { setToggleModal(!toggleModal); setError("")}}
       >
         {!toggleModal ? "Add New Appointment" : "Close New Appointment"}
       </button>

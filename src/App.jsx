@@ -129,6 +129,7 @@ function App() {
             sortAptsBy={sortAptsBy}
             setSearchText={setSearchText}
             reverseOrder={reverseOrder}
+            searchText={searchText}
           />
           <ListAppointments
             appointments={appointments}
