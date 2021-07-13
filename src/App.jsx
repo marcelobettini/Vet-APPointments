@@ -6,6 +6,14 @@ import ListAppointments from "./components/ListAppointments";
 import "./css/App.css";
 
 function App() {
+  const [isNew, setIsNew] = useState(true);
+  const [id, setId] = useState("");
+  const [pet_Name, setPetName] = useState("");
+  const [owner_Name, setOwnerName] = useState("");
+  const [apt_Notes, setAptNotes] = useState("");
+  const [apt_Date, setAptDate] = useState("");
+  const [apt_Time, setAptTime] = useState("");
+
   const [toggleModal, setToggleModal] = useState(false);
   const [error, setError] = useState("");
   const [appointments, setAppointments] = useState([]);
@@ -75,6 +83,24 @@ function App() {
     spin();
   };
 
+  const updateAppointment = (aptObject, id) => {
+    console.log(id);
+    fetch(`https://5fc82e232af77700165ad172.mockapi.io/appointments/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(aptObject),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        getData();
+        return result;
+      })
+      .catch((err) => console.log(err));
+    spin();
+  };
+
   function sortAptsBy(field) {
     let sortedArr = [];
     sortedArr = appointments
@@ -120,6 +146,7 @@ function App() {
         <div>
           <AddAppointments
             addAppointment={addAppointment}
+            updateAppointment={updateAppointment}
             isLoading={isLoading}
             error={error}
             setError={setError}
@@ -127,6 +154,19 @@ function App() {
             searchText={searchText}
             toggleModal={toggleModal}
             setToggleModal={setToggleModal}
+            id={id}
+            pet_Name={pet_Name}
+            owner_Name={owner_Name}
+            apt_Notes={apt_Notes}
+            apt_Date={apt_Date}
+            apt_Time={apt_Time}
+            setPetName={setPetName}
+            setOwnerName={setOwnerName}
+            setAptNotes={setAptNotes}
+            setAptDate={setAptDate}
+            setAptTime={setAptTime}
+            isNew={isNew}
+            setIsNew={setIsNew}
           />
           <SearchAppointments
             sortAptsBy={sortAptsBy}
@@ -139,6 +179,13 @@ function App() {
             deleteAppointment={deleteAppointment}
             toggleModal={toggleModal}
             setToggleModal={setToggleModal}
+            setPetName={setPetName}
+            setOwnerName={setOwnerName}
+            setAptNotes={setAptNotes}
+            setAptDate={setAptDate}
+            setAptTime={setAptTime}
+            setIsNew={setIsNew}
+            setId={setId}
           />
         </div>
       )}

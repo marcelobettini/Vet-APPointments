@@ -1,14 +1,26 @@
-import React, { useState } from "react";
 import "../css/AddAppointments.css";
 
 const AddAppointments = ({
   addAppointment,
+  updateAppointment,
   error,
+  isNew,
+  setIsNew,
   setError,
   toggleModal,
   setToggleModal,
+  id,
+  pet_Name,
+  owner_Name,
+  apt_Notes,
+  apt_Date,
+  apt_Time,
+  setPetName,
+  setOwnerName,
+  setAptNotes,
+  setAptDate,
+  setAptTime,
 }) => {
-  let pet_Name, owner_Name, apt_Notes, apt_Date, apt_Time;
   const handleAddAppointment = (event, a, b, c, d, e) => {
     event.preventDefault();
     if (
@@ -27,7 +39,13 @@ const AddAppointments = ({
         aptDate: `${d} ${e}`,
       };
       setError("");
-      addAppointment(aptObject);
+      if (isNew) {
+        addAppointment(aptObject);
+      } else {
+        console.log(id);
+        updateAppointment(aptObject, id);
+        setIsNew(true);
+      }
     }
   };
 
@@ -63,21 +81,21 @@ const AddAppointments = ({
                 type="text"
                 placeholder="Pet Name"
                 value={pet_Name}
-                onChange={(e) => (pet_Name = e.target.value)}
+                onChange={(e) => setPetName(e.target.value)}
               />
               <input
                 className="form-control my-2"
                 type="text"
                 placeholder="Pet Owner"
                 value={owner_Name}
-                onChange={(e) => (owner_Name = e.target.value)}
+                onChange={(e) => setOwnerName(e.target.value)}
               />
               <input
                 className="form-control my-2"
                 type="text"
                 placeholder="Notes"
                 value={apt_Notes}
-                onChange={(e) => (apt_Notes = e.target.value)}
+                onChange={(e) => setAptNotes(e.target.value)}
               />
               <div className="row">
                 <div className="col-6">
@@ -86,7 +104,7 @@ const AddAppointments = ({
                     type="date"
                     placeholder="Date"
                     value={apt_Date}
-                    onChange={(e) => (apt_Date = e.target.value)}
+                    onChange={(e) => setAptDate(e.target.value)}
                   />
                 </div>
                 <div className="col-6">
@@ -95,7 +113,7 @@ const AddAppointments = ({
                     type="time"
                     placeholder="Hour"
                     value={apt_Time}
-                    onChange={(e) => (apt_Time = e.target.value)}
+                    onChange={(e) => setAptTime(e.target.value)}
                   />
                 </div>
                 {error && (

@@ -1,4 +1,3 @@
-import React from "react";
 import { BsTrash, BsPencilSquare } from "react-icons/bs";
 import Moment from "react-moment";
 import "../css/ListAppointments.css";
@@ -7,10 +6,25 @@ const ListAppointments = ({
   deleteAppointment,
   toggleModal,
   setToggleModal,
+  setPetName,
+  setOwnerName,
+  setAptNotes,
+  setAptDate,
+  setAptTime,
+  setIsNew,
+  setId,
 }) => {
   function editAppointment(id) {
+    console.log(id);
+    setIsNew(false);
     const item = appointments.filter((el) => el.id === id);
-    console.log(item[0].aptDate);
+    setId(id);
+    setPetName(item[0].petName);
+    setOwnerName(item[0].ownerName);
+    setAptNotes(item[0].aptNotes);
+    const date_time = item[0].aptDate.split(" ");
+    setAptDate(date_time[0]);
+    setAptTime(date_time[1]);
   }
   return (
     <div className="container bg-dark py-3">
