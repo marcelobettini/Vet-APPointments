@@ -65,7 +65,7 @@ const AddAppointments = ({
           cleanFields();
         }}
       >
-        {!toggleModal ? "Add New Appointment" : "Close New Appointment"}
+        {!toggleModal ? "Add Appointment" : "Close Appointment"}
       </button>
       {toggleModal && (
         <div className="row justify-content-center my-2 ">

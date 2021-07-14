@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AddAppointments from "./components/AddAppointments";
 import SearchAppointments from "./components/SearchAppointments";
 import ListAppointments from "./components/ListAppointments";
+import Header from "./components/Header";
 import "./css/App.css";
 
 function App() {
@@ -154,6 +155,7 @@ function App() {
         </div>
       ) : (
         <div>
+          <Header />
           <AddAppointments
             addAppointment={addAppointment}
             updateAppointment={updateAppointment}
