@@ -3,8 +3,7 @@ import Moment from "react-moment";
 import "../css/ListAppointments.css";
 const ListAppointments = ({
   appointments,
-  deleteAppointment,
-  toggleModal,
+  deleteAppointment,  
   setToggleModal,
   setPetName,
   setOwnerName,

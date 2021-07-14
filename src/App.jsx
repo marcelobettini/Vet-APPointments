@@ -1,4 +1,3 @@
-// import React, {Component} from 'react';
 import React, { useEffect, useState } from "react";
 import AddAppointments from "./components/AddAppointments";
 import SearchAppointments from "./components/SearchAppointments";
@@ -205,5 +204,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

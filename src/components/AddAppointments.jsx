@@ -89,6 +89,7 @@ const AddAppointments = ({
                 type="text"
                 placeholder="Pet Name"
                 value={pet_Name}
+                autoFocus={true}
                 onChange={(e) => setPetName(e.target.value)}
               />
               <input
